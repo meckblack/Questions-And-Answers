@@ -1,0 +1,72 @@
+﻿@model IEnumerable<QnA.Models.Answers>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+
+    <ul class="divided">
+        <li class="col-md-offset-3 col-md-6 col-lg-offset-3">
+            <h2 class="major"><span>Welcom to the QnA Answers</span></h2>
+            @if (ViewData["isthere"] != null)
+            {
+                <div class="jumbotron">
+                <article class="box post-summary">
+                    <h5 class="text-center">
+                        You can post Answers to this question
+                    </h5>
+                    <a class="btn btn-sm btn-primary pull-right" asp-controller="Answers" asp-action="Create">Add Answer</a>
+                </article>
+                </div>
+                 @foreach (var item in Model)
+            {
+                <div class="jumbotron">
+                    <article class="box post-summary">
+                        <h5>
+                            @Html.DisplayFor(modelItem => item.Body)
+                        </h5>
+                        <a class="btn btn-sm btn-primary pull-right" asp-controller="Answers" asp-route-id="@item.QuestionsId">Down Vote</a>
+                        <a class="btn btn-sm btn-primary pull-right" asp-controller="Answers" asp-route-id="@item.QuestionsId">Up Vote</a>
+                    </article>
+                </div>
+            }
+
+            }
+            else
+            {
+                 @foreach (var item in Model)
+            {
+                <div class="jumbotron">
+                    <article class="box post-summary">
+                        <h2>
+                            @Html.DisplayFor(modelItem => item.Body)
+                        </h2>
+                        <p style="font-size:small">You have to register to grade answers</p>
+                        <a asp-action="Register" asp-controller="User">Register</a>
+                    </article>
+                </div>
+            }
+
+            }
+             
+           
+        </li>
+    </ul>
+</section>
+
+
+
+<script src="~/Landing/assets/js/jquery.min.js"></script>
+<script src="~/Modal/Modal.js"></script>
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'>
+            </div>
+        </div>
+    </div>
+</div>

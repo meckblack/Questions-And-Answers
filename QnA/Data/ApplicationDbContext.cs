@@ -15,6 +15,13 @@ namespace QnA.Data
         {
         }
 
+
+        public DbSet<User> User { get; set; }
+        public DbSet<Role> Role { get; set; }
+        public DbSet<Questions> Question { get; set; }
+        public DbSet<Answers> Answers { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
