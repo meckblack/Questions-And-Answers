@@ -74,8 +74,15 @@ namespace QnA.Controllers
         {
             ViewData["isthere"] = _session.GetInt32("usersessionid");
             var id = _session.GetInt32("usersessionid");
-            var _allUserQuestions = _db.Question.Where(q => q.UserId == Convert.ToInt32(id));
-            return View(_allUserQuestions);
+            if (id != null)
+            {
+                var _allUserQuestions = _db.Question.Where(q => q.UserId == Convert.ToInt32(id));
+                return View(_allUserQuestions);
+            }
+            else
+            {
+                return RedirectToAction("Signin", "User");
+            }
         }
 
     }

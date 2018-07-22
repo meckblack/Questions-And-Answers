@@ -10,24 +10,38 @@
     <ul class="divided">
         <li class="col-md-offset-3 col-md-6 col-lg-offset-3">
             <h2 class="major"><span>All Your Questions</span></h2>
-                @foreach (var item in Model)
-                {
-                    <div class="jumbotron">
-                        <article class="box post-summary">
-                            <h4>
-                                @Html.DisplayFor(modelItem => item.Header)
-                            </h4>
-                            <h5>
-                                @Html.DisplayFor(modelItem => item.Body)
-                            </h5>
-                            <h5 style="font-size: smaller" class="pull-right">
-                                @Html.DisplayFor(modelItem => item.user.Email)
-                                @Html.DisplayFor(modelItem => item.Time)
-                            </h5>
-                        </article>
-                    </div>
-                }
+            @foreach (var item in Model)
+            {
+                <div class="jumbotron">
+                    <article class="box post-summary">
+                        <h4>
+                            @Html.DisplayFor(modelItem => item.Header)
+                        </h4>
+                        <h5>
+                            @Html.DisplayFor(modelItem => item.Body)
+                        </h5>
+                        <h5 style="font-size: smaller; font-style:italic">
+                            @Html.DisplayFor(modelItem => item.user.Email)
+                            @Html.DisplayFor(modelItem => item.Time)
+                        </h5>
+                        <a class="btn btn-sm btn-danger pull-right" asp-action="Delete" asp-controller="Questions" data-modal="">Delete</a>
+                    </article>
+                </div>
+            }
 
         </li>
     </ul>
 </section>
+
+<script src="~/Landing/assets/js/jquery.min.js"></script>
+<script src="~/Modal/Modal.js"></script>
+
+<!-- modal placeholder-->
+<div id='myModal' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='myModalContent'>
+            </div>
+        </div>
+    </div>
+</div>
