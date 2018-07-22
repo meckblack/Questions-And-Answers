@@ -6,26 +6,44 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section>
-    
-        <ul class="divided">
-            <li class="col-md-offset-3 col-md-6 col-lg-offset-3">
-                <h2 class="major"><span>Welcom to the QnA Program</span></h2>
+<div class="row ">
+    <h1 class="text-center">Welcome to the QnA</h1>
+    <div class="col-md-offset-2 col-md-8 col-md-offset-2">
+        <div data-scrollreveal="enter right">
+
+            <ul class="timeline">
+                @*<li class="time-label">
+                        <span class="bg-orange">
+                            Welcome to the QnA
+                        </span>
+                        <br />
+                        <br />
+                    </li>*@
+
                 @foreach (var item in Model)
                 {
-                <div class="jumbotron">
-                    <article class="box post-summary">
-                        <h3>
-                            @Html.DisplayFor(modelItem => item.Header)
-                        </h3>
-                        <h5>
-                            @Html.DisplayFor(modelItem => item.Body)
-                        </h5>
-                        <a class="btn btn-sm btn-primary pull-right" asp-controller="Answers" asp-route-id="@item.QuestionsId">Answers</a>
-                    </article>
-                </div>
+                    @*<li class="time-label">
+                        <span class="bg-light-blue">
+                            Year 2014
+                        </span>
+                        </li>*@
+
+                    <li>
+                        <i class="fa fa-envelope bg-blue"></i>
+                        <div class="timeline-item">
+                            <span class="time"><i class="fa fa-clock-o"></i>@Html.DisplayFor(modelItem => item.Time)</span>
+                            <h3 class="timeline-header" style="font-weight:800">@Html.DisplayFor(modelItem => item.Header)</h3>
+                            <div class="timeline-body">
+                                @Html.DisplayFor(modelItem => item.Body)
+                            </div>
+                            <div class='timeline-footer'>
+                                <a class="btn btn-primary btn-xs" asp-controller="Answers" asp-route-id="@item.QuestionsId">Answers</a>
+                                @*<a class="btn btn-danger btn-xs">Read More</a>*@
+                            </div>
+                        </div>
+                    </li>
                 }
-                
-            </li>
-        </ul>
-</section>
+            </ul>
+        </div>
+    </div>
+</div>
