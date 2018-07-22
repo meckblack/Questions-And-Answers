@@ -20,5 +20,7 @@ namespace QnA.Models
         public int UserId { get; set; }
         [ForeignKey("UserId")]
         public User user { get; set; }
+
+        public string Time { get; set; }
     }
 }

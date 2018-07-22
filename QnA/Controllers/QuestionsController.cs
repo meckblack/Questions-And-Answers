@@ -51,6 +51,7 @@ namespace QnA.Controllers
                     {
                         Header = questions.Header,
                         Body = questions.Body,
+                        Time = Convert.ToString(DateTime.Now),
                         UserId = Convert.ToInt32(_userid)
                     };
                     _db.Question.Add(_newquestion);
