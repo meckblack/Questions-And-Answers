@@ -9,9 +9,11 @@ namespace QnA.Models
 {
     public class User
     {
+        #region DATA MODELS
+
         public int UserId { get; set; }
-        
-        [Required(ErrorMessage="First Name is required!!!")]
+
+        [Required(ErrorMessage = "First Name is required!!!")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "Last Name is required!!!")]
@@ -24,16 +26,24 @@ namespace QnA.Models
         [Required(ErrorMessage = "Username field is reqired!!!")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage ="Password field is required!!!")]
+        [Required(ErrorMessage = "Password field is required!!!")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required(ErrorMessage ="ConfirmPassword field is required!!!")]
+        [Required(ErrorMessage = "ConfirmPassword field is required!!!")]
         [DataType(DataType.Password)]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
-        
 
+        #endregion
+        
+        #region FOREIGN KEYS
+
+        //public int RoleId { get; set; }
+        //[ForeignKey("RoleId")]
+        //public virtual Role Role { get; set; }
+
+        #endregion
 
     }
 }
