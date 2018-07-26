@@ -11,9 +11,10 @@ using System;
 namespace QnA.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180726041405_Initial Migration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,6 +219,19 @@ namespace QnA.Data.Migrations
                     b.ToTable("Question");
                 });
 
+            modelBuilder.Entity("QnA.Models.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("Role");
+                });
+
             modelBuilder.Entity("QnA.Models.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -238,10 +252,14 @@ namespace QnA.Data.Migrations
                     b.Property<string>("Password")
                         .IsRequired();
 
+                    b.Property<int>("RoleId");
+
                     b.Property<string>("Username")
                         .IsRequired();
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("RoleId");
 
                     b.ToTable("User");
                 });
@@ -304,6 +322,14 @@ namespace QnA.Data.Migrations
                     b.HasOne("QnA.Models.User", "user")
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("QnA.Models.User", b =>
+                {
+                    b.HasOne("QnA.Models.Role", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

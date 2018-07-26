@@ -36,12 +36,12 @@ namespace QnA.Models
         public string ConfirmPassword { get; set; }
 
         #endregion
-        
+
         #region FOREIGN KEYS
 
-        //public int RoleId { get; set; }
-        //[ForeignKey("RoleId")]
-        //public virtual Role Role { get; set; }
+        public int RoleId { get; set; }
+        [ForeignKey("RoleId")]
+        public virtual Role Role { get; set; }
 
         #endregion
 
