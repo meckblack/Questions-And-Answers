@@ -21,6 +21,9 @@ namespace QnA.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Username field is reqired!!!")]
+        public string Username { get; set; }
+
         [Required(ErrorMessage ="Password field is required!!!")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
