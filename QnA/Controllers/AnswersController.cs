@@ -31,6 +31,8 @@ namespace QnA.Controllers
             ViewData["isthere"] = _session.GetInt32("usersessionid");
             _session.SetInt32("questionsessionid", id);
             var _allQuestionAnswers = _db.Answers.Where(a => a.QuestionsId == Convert.ToInt32(id));
+            var allQuestionAnswers = _db.Answers.Where(a => a.QuestionsId == Convert.ToInt32(id)).ToList();
+            
             return View(_allQuestionAnswers);
         }
         
