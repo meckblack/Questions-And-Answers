@@ -45,12 +45,23 @@ namespace QnA.Controllers
                     {
                         ViewData["doubleemail"] = "Sorry Email already exists";
                     }
+                    if (_db.User.Any(u => u.Username == user.Username))
+                    {
+                        ViewData["doubleusername"] = "Sorry Username already exists";
+                    }
                     else
                     {
-                        user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-                        user.ConfirmPassword = BCrypt.Net.BCrypt.HashPassword(user.ConfirmPassword);
+                        var _user = new User
+                        {
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Email = user.Email,
+                            Username = user.Username,
+                            Password = BCrypt.Net.BCrypt.HashPassword(user.Password),
+                            ConfirmPassword = BCrypt.Net.BCrypt.HashPassword(user.ConfirmPassword),
+                        };
 
-                        await _db.User.AddAsync(user);
+                        await _db.User.AddAsync(_user);
                         await _db.SaveChangesAsync();
 
                         return RedirectToAction("SignIn", "User");
@@ -87,7 +98,7 @@ namespace QnA.Controllers
                 {
                     var _password = BCrypt.Net.BCrypt.Verify(user.Password, _user.Password);
 
-                    if( _password == true)
+                    if (_password == true)
                     {
                         _session.SetInt32("usersessionid", _user.UserId);
 

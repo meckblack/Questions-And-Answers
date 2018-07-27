@@ -4,7 +4,10 @@
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<h2>
+    REGISTER
+</h2>
+<hr />
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Register">
@@ -21,14 +24,20 @@
                         <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Email" class="control-label"></label>
                         <input asp-for="Email" class="form-control" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
-            
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Username" class="control-label"></label>
+                        <input asp-for="Username" class="form-control" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label asp-for="Password" class="control-label"></label>
