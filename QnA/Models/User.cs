@@ -37,9 +37,10 @@ namespace QnA.Models
 
         #endregion
 
-        #region FOREIGN KEYS
+        #region Enums
 
-        
+        public Role Role { get; set; }
+
         #endregion
 
     }

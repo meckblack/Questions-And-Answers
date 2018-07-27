@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace QnA.Models
 {
-    public class Role
+    public enum Role
     {
-        public int RoleId { get; set; }
-
-        [Required(ErrorMessage="Name field is required!!!")]
-        public string Name { get; set; }
+        SuperUsers, Others
     }
 }
